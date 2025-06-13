@@ -1,12 +1,17 @@
-import { auth } from '../auth';
+import { auth } from './auth';
+
+// `better-auth` types currently do not expose signIn/signUp helpers.
+// Cast to `any` to access these methods until official typings are updated.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const authAny = auth as any;
 
 export const authClient = {
   signIn: {
     email: async ({ email, password }: { email: string; password: string }) => {
-      return auth.signIn.email({ email, password });
+      return authAny.signIn.email({ email, password });
     },
     social: async ({ provider }: { provider: 'google' }) => {
-      return auth.signIn.social({ provider });
+      return authAny.signIn.social({ provider });
     }
   },
   signUp: {
@@ -15,7 +20,7 @@ export const authClient = {
       password: string;
       name: string 
     }) => {
-      return auth.signUp.email({ email, password, name });
+      return authAny.signUp.email({ email, password, name });
     }
   }
 };

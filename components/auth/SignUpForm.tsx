@@ -9,7 +9,8 @@ import { Password } from 'primereact/password';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import { useTranslations } from 'next-intl';
-import Link from 'next-intl/link'; // For internationalized routing
+import Link from 'next/link'; // Use next/link for client-side navigation
+//import Link from 'next-intl/link'; // For internationalized routing
 
 export function SignUpForm() {
   const [email, setEmail] = useState("");

@@ -7,24 +7,23 @@ import { InputText } from 'primereact/inputtext';
 import { Password } from 'primereact/password';
 import { Divider } from 'primereact/divider';
 import { useTranslations } from 'next-intl';
-import Link from 'next-intl/link'; // For internationalized routing
+import Link from 'next/link';
+import { authClient } from '@/lib/auth/auth-client';
+import type { FormEvent } from 'react';
 
 // We need a client component to handle form actions
 export function LoginForm() {
   const t = useTranslations('LoginPage');
 
-  const handleGoogleSignIn = async () => {
-    'use server'; // This is a server action
-    // Replace with actual sign-in logic if not using server actions directly
-    // For now, assuming signIn is globally available or imported
-    // await signIn('google', { redirectTo: '/files' });
-    console.log('Attempting Google Sign-In');
+  const handleGoogleSignIn = async (e: FormEvent) => {
+    e.preventDefault();
+    await authClient.signIn.social({ provider: 'google' });
   };
 
   return (
     <div className="flex align-items-center justify-content-center min-h-screen bg-gray-100">
       <Card title={t('title')} className="w-full max-w-25rem shadow-2">
-        <form action={handleGoogleSignIn} className="p-fluid">
+        <form onSubmit={handleGoogleSignIn} className="p-fluid">
           <Button type="submit" label={t('googleButton')} icon="pi pi-google" className="p-button-secondary mb-3" />
         </form>
         <Divider align="center" className="my-3"><b>{t('or')}</b></Divider>

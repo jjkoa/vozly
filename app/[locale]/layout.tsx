@@ -1,9 +1,11 @@
 // app/[locale]/layout.tsx
 import { Inter } from 'next/font/google';
+import { NextIntlClientProvider } from 'next-intl';
+import { notFound } from 'next/navigation';
 import { Providers } from '@/components/providers';
-import 'primereact/resources/themes/lara-light-indigo/theme.css'; // theme
-import 'primereact/resources/primereact.min.css'; // core css
-import 'primeicons/primeicons.css'; // icons
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -13,17 +15,29 @@ export const metadata = {
   description: 'AI-powered transcription service',
 };
 
-export default function RootLayout({
-  children,
-  params: { locale },
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-  params: { locale: string };
-}) {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function RootLayout({ children, params }: RootLayoutProps) {
+  const { locale } = await params;
+
+  // Dynamically load messages for the active locale
+  let messages: Record<string, unknown>;
+  try {
+    messages = (await import(`@/lib/messages/${locale}.json`)).default;
+  } catch  {
+    // Locale not found – show 404 page
+    notFound();
+  }
+
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Providers>{children}</Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
