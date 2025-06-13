@@ -1,27 +1,12 @@
 'use client'
 import { auth } from './auth';
-
+import { createAuthClient } from "better-auth/client"
+import { usernameClient } from "better-auth/client/plugins"
 // `better-auth` types currently do not expose signIn/signUp helpers.
 // Cast to `any` to access these methods until official typings are updated.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const authAny = auth as any;
+const authClient = createAuthClient({
+  plugins: [usernameClient()]
+});
 
-export const authClient = {
-  signIn: {
-    email: async ({ email, password }: { email: string; password: string }) => {
-      return authAny.signIn.email({ email, password });
-    },
-    social: async ({ provider }: { provider: 'google' }) => {
-      return authAny.signIn.social({ provider });
-    }
-  },
-  signUp: {
-    email: async ({ email, password, name }: { 
-      email: string; 
-      password: string;
-      name: string 
-    }) => {
-      return authAny.signUp.email({ email, password, name });
-    }
-  }
-};
+export { authClient };
