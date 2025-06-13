@@ -1,3 +1,4 @@
+'use client'
 import { auth } from './auth';
 
 // `better-auth` types currently do not expose signIn/signUp helpers.
