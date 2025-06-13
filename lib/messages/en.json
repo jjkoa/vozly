@@ -18,7 +18,9 @@
     "creatingAccount": "Creating account...",
     "or": "Or",
     "alreadyHaveAccount": "Already have an account?",
-    "loginLink": "Login"
+    "loginLink": "Login",
+    "usernameLabel": "Username",
+    "signUpWithGoogle": "Sign Up with Google"
   },
   "FilesPage": {
     "title": "My Files",

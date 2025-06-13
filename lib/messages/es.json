@@ -18,7 +18,9 @@
     "creatingAccount": "Creando cuenta...",
     "or": "O",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-    "loginLink": "Iniciar Sesión"
+    "loginLink": "Iniciar Sesión",
+    "usernameLabel": "Nombre de Usuario",
+    "signUpWithGoogle": "Regístrate con Google"
   },
   "FilesPage": {
     "title": "Mis Archivos",
