@@ -5,6 +5,6 @@ export default {
   out: 'lib/db/sqlite/drizzle',
   dialect: 'sqlite',
   dbCredentials: {
-    url: process.env.DATABASE_URL ?? 'file:./lib/db/vozly.db',
+    url: process.env.DATABASE_URL ?? 'file:./vozly.db',
   },
 } satisfies Config;

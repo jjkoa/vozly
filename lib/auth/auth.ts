@@ -5,7 +5,7 @@ import { nextCookies } from "better-auth/next-js"
 export const auth = betterAuth({
   database: {
     provider: "sqlite",
-    url: process.env.DATABASE_URL!,
+    url: process.env.DATABASE_URL ?? 'file:./vozly.db',
   },
   secret: process.env.AUTH_SECRET!,
   baseURL: process.env.AUTH_URL!,
