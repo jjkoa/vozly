@@ -23,22 +23,18 @@ interface RootLayoutProps {
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { locale } = await params;
 
-  // Dynamically load messages for the active locale
   let messages: Record<string, unknown>;
   try {
     messages = (await import(`@/lib/messages/${locale}.json`)).default;
-  } catch  {
-    // Locale not found – show 404 page
+  } catch {
     notFound();
   }
 
+  console.log("SSR locale:", locale);
+
   return (
-    <html lang={locale}>
-      <body className={`${inter.className} antialiased`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>{children}</Providers>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      <Providers>{children}</Providers>
+    </NextIntlClientProvider>
   );
 }
