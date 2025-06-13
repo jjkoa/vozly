@@ -13,20 +13,24 @@ export default function middleware(req: NextRequest) {
   const sessionCookie = getSessionCookie(req);
 
   const isAuthenticated = !!sessionCookie;
-  const isProtectedRoute = req.nextUrl.pathname.includes('/files');
-  const isLoginRoute = req.nextUrl.pathname.includes('/login');
+  const pathname = req.nextUrl.pathname;
+  const locale = pathname.split('/')[1] || 'es';
+
+  // Define protected routes
+  const protectedRoutes = [`/${locale}/files`, `/${locale}/dashboard`];
+  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route));
+
+  const isLoginRoute = pathname.startsWith(`/${locale}/login`);
 
   // If user is not authenticated and trying to access protected route
   if (!isAuthenticated && isProtectedRoute) {
-    const locale = req.nextUrl.pathname.split('/')[1] || 'es';
     const newUrl = new URL(`/${locale}/login`, req.nextUrl.origin);
     return NextResponse.redirect(newUrl);
   }
 
   // If user is authenticated and trying to access login page
   if (isAuthenticated && isLoginRoute) {
-    const locale = req.nextUrl.pathname.split('/')[1] || 'es';
-    const newUrl = new URL(`/${locale}/files`, req.nextUrl.origin);
+    const newUrl = new URL(`/${locale}/dashboard`, req.nextUrl.origin); // Updated redirect to dashboard
     return NextResponse.redirect(newUrl);
   }
 

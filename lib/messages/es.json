@@ -9,9 +9,25 @@
     "signup": "¿No tienes cuenta? Regístrate Ahora",
     "forgot": "¿Olvidaste la contraseña?"
   },
+  "SignUpPage": {
+    "title": "Crea Tu Cuenta",
+    "nameLabel": "Nombre",
+    "emailLabel": "Dirección de Email",
+    "passwordLabel": "Contraseña",
+    "signUpButton": "Regístrate",
+    "creatingAccount": "Creando cuenta...",
+    "or": "O",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "loginLink": "Iniciar Sesión"
+  },
   "FilesPage": {
     "title": "Mis Archivos",
     "upload": "Subir un archivo",
     "dropzone": "Arrastra tus archivos aquí"
+  },
+  "DashboardPage": {
+    "title": "Panel de Control",
+    "greetingUser": "¡Hola, {username}!",
+    "helloWorld": "Hola mundo"
   }
 }

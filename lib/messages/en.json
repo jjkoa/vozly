@@ -1,0 +1,33 @@
+{
+  "LoginPage": {
+    "title": "Welcome to Auris",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "loginButton": "Login",
+    "googleButton": "Sign in with Google",
+    "or": "Or",
+    "signup": "Don't have an account? Sign Up Now",
+    "forgot": "Forgot password?"
+  },
+  "SignUpPage": {
+    "title": "Create Your Account",
+    "nameLabel": "Name",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "signUpButton": "Sign Up",
+    "creatingAccount": "Creating account...",
+    "or": "Or",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Login"
+  },
+  "FilesPage": {
+    "title": "My Files",
+    "upload": "Upload a file",
+    "dropzone": "Drag your files here"
+  },
+  "DashboardPage": {
+    "title": "Dashboard",
+    "greetingUser": "Hello, {username}!",
+    "helloWorld": "Hello world"
+  }
+}
